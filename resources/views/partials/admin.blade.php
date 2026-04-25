@@ -412,7 +412,7 @@
     <!-- Bulk Action Bar -->
 <div class="bulk-bar" id="stemBulkBar">
   <span class="bulk-bar-info" id="stemBulkInfo">0 stems selected</span>
-  
+
   <button class="admin-import-btn" id="bulkEditGenreBtn">
     <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11.5 2.5a2.12 2.12 0 0 1 3 3L5 15H1v-4z"/></svg>
     Edit Genre
@@ -422,7 +422,7 @@
     <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11.5 2.5a2.12 2.12 0 0 1 3 3L5 15H1v-4z"/></svg>
     Edit Type
   </button>
-{{-- 
+{{--
   <button class="admin-import-btn" id="bulkHideBtn">
     <svg width="13" height="13" viewBox="0 0 20 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 1l18 16M8.5 3.2A7 7 0 0 1 10 3c6 0 9 6 9 6a16.4 16.4 0 0 1-2.5 3.3M5.2 5.2A16.4 16.4 0 0 0 1 9s3 6 9 6a7 7 0 0 0 4.8-1.8"/></svg>
     Hide Selected
@@ -1110,12 +1110,12 @@ async function renderAdminStems(){
       const type=s.stem_type||s.type||'—';
       STEMS_CACHE[s.id]={...s,key,type,isHidden};
       const tr=document.createElement('tr');
-      
+
       // Add hidden class to entire row if stem is hidden
       if(isHidden) {
         tr.classList.add('stem-row-hidden');
       }
-      
+
       tr.innerHTML=`
         <td><input type="checkbox" class="admin-check stem-check" value="${s.id}"/></td>
         <td style="font-weight:500;font-size:13px;">${escHtml(s.title)}</td>
@@ -1142,12 +1142,12 @@ async function renderAdminStems(){
       `;
       tbody.appendChild(tr);
     });
-    
+
     const checkAll = document.getElementById('stemCheckAll');
     if(checkAll) checkAll.checked = false;
     attachStemCheckListeners();
 updateBulkStemBar();
-    
+
     buildPag('adminStemPag',lastPg,stemPage,p=>{stemPage=p;renderAdminStems();});
   }catch(err){
     console.error(err);
@@ -1337,7 +1337,7 @@ document.getElementById('adminViewSiteBtn')?.addEventListener('click', () => {
 
 document.getElementById('adminLogoutBtn')?.addEventListener('click', async () => {
   showToast('Logging you out...', 'info');
-  
+
   try {
     const response = await fetch('/logout', {
       method: 'POST',
@@ -1348,7 +1348,7 @@ document.getElementById('adminLogoutBtn')?.addEventListener('click', async () =>
       },
       credentials: 'same-origin'
     });
-    
+
     if (response.ok) {
       showToast('Logged out successfully! Redirecting...', 'success');
       setTimeout(() => {
@@ -1366,7 +1366,7 @@ document.getElementById('adminLogoutBtn')?.addEventListener('click', async () =>
 document.getElementById('adminLogoutBtn')?.addEventListener('click', async () => {
   // Show toast instead of confirm
   showToast('Logging out...', 'info');
-  
+
   try {
     const response = await fetch('/logout', {
       method: 'POST',
@@ -1377,7 +1377,7 @@ document.getElementById('adminLogoutBtn')?.addEventListener('click', async () =>
       },
       credentials: 'same-origin'
     });
-    
+
     if (response.ok) {
       showToast('Logged out successfully!', 'success');
       setTimeout(() => {
@@ -1430,10 +1430,10 @@ var VAULT_GENRES = []; // populated from API
 async function loadVaultGenres() {
   setLoading('vaultGenreTbody', 7);
   try {
-    const res  = await fetch('https://song.petlovekw.com/api/vault/genres');
+    const res  = await fetch('https://songotsamples.com/api/vault/genres');
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const data = await res.json();
-    
+
     // Merge with DB meta (hidden/desc/tags overrides)
     const metaRes  = await fetch(`${API_BASE}/vault/genres/meta`);
     const metaData = metaRes.ok ? await metaRes.json() : { meta: {} };

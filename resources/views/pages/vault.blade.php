@@ -241,8 +241,8 @@ async function fetchGenres() {
   try {
     // Fetch both APIs in parallel
     const [genresRes, metaRes] = await Promise.all([
-      fetch('https://song.petlovekw.com/api/vault/genres'),
-      fetch('https://song.petlovekw.com/manage-panel-x9k/api/vault/genres/meta')
+      fetch('https://songotsamples.com/api/vault/genres'),
+      fetch('https://songotsamples.com/manage-panel-x9k/api/vault/genres/meta')
     ]);
 
     const genresData = await genresRes.json();

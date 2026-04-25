@@ -17,7 +17,7 @@ class VaultAdminController extends Controller
     public function index()
     {
         // 1. Fetch live genres from external API
-        $response = Http::timeout(10)->get('https://song.petlovekw.com/api/vault/genres');
+        $response = Http::timeout(10)->get('https://songotsamples.com/api/vault/genres');
 
         if ($response->failed()) {
             return response()->json(['error' => 'Failed to fetch genres from upstream API'], 502);
