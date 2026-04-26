@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Laravel\Socialite\Facades\Socialite;
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 
 class AuthController extends Controller
 {
@@ -94,6 +96,9 @@ public function register(Request $request)
     
     // Login the user
     Auth::login($user);
+
+    // Send welcome email
+    Mail::to($user->email)->send(new WelcomeMail($user->name));
     
     $selectedPlan = $request->input('selected_plan');
     
@@ -119,6 +124,8 @@ public function register(Request $request)
             return redirect('/')->with('error', 'Google login failed. Please try again.');
         }
 
+        $isNewUser = !User::where('email', $googleUser->getEmail())->exists();
+
         // User dhundo ya banao
         $user = User::firstOrCreate(
             ['email' => $googleUser->getEmail()],
@@ -142,6 +149,11 @@ public function register(Request $request)
         Auth::login($user);
         $user->update(['last_login_at' => now()]);
         request()->session()->regenerate();
+
+        // Send welcome email only to brand-new accounts
+        if ($isNewUser) {
+            Mail::to($user->email)->send(new WelcomeMail($user->name));
+        }
 
         if ($user->isAdmin()) {
             return redirect()->route('admin.dashboard');

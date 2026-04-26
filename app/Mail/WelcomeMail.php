@@ -9,27 +9,29 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class PasswordResetOtpMail extends Mailable
+class WelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public function __construct(
-        public string $otp,
-        public string $name = 'there'
+        public string $name
     ) {}
 
     public function envelope(): Envelope
     {
         return new Envelope(
             from: new Address('no-reply@songotsamples.com', 'Son Got Samples'),
-            subject: 'Your Password Reset Code – Son Got Samples',
+            replyTo: [
+                new Address('contact@songotsamples.com', 'Son Got Samples'),
+            ],
+            subject: 'Welcome to Son Got Samples',
         );
     }
 
     public function content(): Content
     {
         return new Content(
-            view: 'emails.password-reset-otp',
+            view: 'emails.welcome',
         );
     }
 }
