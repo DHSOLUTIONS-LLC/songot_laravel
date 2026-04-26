@@ -4,60 +4,76 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to Son Got Samples</title>
-  <style>
-    body { margin: 0; padding: 0; background: #05070f; font-family: 'Segoe UI', sans-serif; color: #e8ecff; }
-    .wrapper { max-width: 480px; margin: 0 auto; padding: 40px 20px; }
-    .card {
-      background: #0d1124;
-      border: 1px solid rgba(96,116,255,.2);
-      border-radius: 16px;
-      padding: 40px;
-      text-align: center;
-    }
-    .logo { font-size: 20px; font-weight: 300; letter-spacing: .1em; color: #6074ff; margin-bottom: 32px; }
-    h1 { font-size: 22px; font-weight: 500; margin-bottom: 8px; }
-    p { font-size: 14px; color: #8f9abf; line-height: 1.6; margin-bottom: 20px; }
-    .divider { height: 1px; background: rgba(96,116,255,.15); margin: 28px 0; }
-    .cta-btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #6074ff, #4a5ee8);
-      color: #fff !important;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 13px 36px;
-      border-radius: 9px;
-      letter-spacing: .03em;
-      margin-bottom: 32px;
-    }
-    .footer { font-size: 11px; color: #3a4060; margin-top: 32px; }
-    .muted { font-size: 12px; color: #5a6488; }
-  </style>
 </head>
-<body>
-  <div class="wrapper">
-    <div class="card">
+<body style="margin:0;padding:0;background:#f0f2ff;font-family:'Segoe UI',Arial,sans-serif;">
 
-      <div class="logo">SON GOT SAMPLES</div>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f0f2ff;padding:40px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:480px;">
 
-      <h1>Welcome to Son Got Samples</h1>
+          {{-- Logo / Header --}}
+          <tr>
+            <td align="center" style="padding-bottom:24px;">
+              <span style="font-size:13px;font-weight:700;letter-spacing:.18em;color:#6074ff;text-transform:uppercase;">SON GOT SAMPLES</span>
+            </td>
+          </tr>
 
-      <p>Your account is ready, and you can start browsing the stem library right away.</p>
+          {{-- Card --}}
+          <tr>
+            <td style="background:#ffffff;border-radius:16px;border:1px solid #dde1ff;padding:44px 40px;text-align:center;">
 
-      <a href="https://songotsamples.com/#library" class="cta-btn">Browse Library</a>
+              {{-- Icon --}}
+              <div style="display:inline-block;background:#eef0ff;border-radius:50%;width:56px;height:56px;line-height:56px;text-align:center;margin-bottom:24px;font-size:26px;">🎵</div>
 
-      <div class="divider"></div>
+              {{-- Title --}}
+              <h1 style="margin:0 0 10px;font-size:22px;font-weight:700;color:#0d1124;letter-spacing:-.01em;">Welcome to Son Got Samples</h1>
 
-      <p>We'll send occasional updates when new stems, packs, or library features are added.</p>
+              {{-- Body text --}}
+              <p style="margin:0 0 28px;font-size:14px;color:#4a5072;line-height:1.7;">
+                Your account is ready, and you can start browsing the stem library right away.
+              </p>
 
-      <p class="muted">If you didn't create this account, you can safely ignore this email.</p>
+              {{-- CTA Button --}}
+              <a href="https://songotsamples.com/#library"
+                 style="display:inline-block;background:#5060f0;color:#ffffff;text-decoration:none;font-size:14px;font-weight:700;padding:14px 38px;border-radius:9px;letter-spacing:.02em;margin-bottom:36px;">
+                Browse Library
+              </a>
 
-      <p style="font-size:13px; color:#8f9abf; margin-bottom:4px;">Best regards,</p>
-      <p style="font-size:13px; color:#e8ecff; margin-bottom:0;">Son Got Samples</p>
+              {{-- Divider --}}
+              <div style="height:1px;background:#eaecf8;margin:0 0 28px;"></div>
 
-      <div class="footer">© {{ date('Y') }} Son Got Samples. All rights reserved.</div>
+              {{-- Secondary text --}}
+              <p style="margin:0 0 16px;font-size:14px;color:#4a5072;line-height:1.7;">
+                We'll send occasional updates when new stems, packs, or library features are added.
+              </p>
 
-    </div>
-  </div>
+              {{-- Safety note --}}
+              <p style="margin:0 0 28px;font-size:12px;color:#9399b8;line-height:1.6;">
+                If you didn't create this account, you can safely ignore this email.
+              </p>
+
+              {{-- Divider --}}
+              <div style="height:1px;background:#eaecf8;margin:0 0 24px;"></div>
+
+              {{-- Sign-off --}}
+              <p style="margin:0 0 2px;font-size:13px;color:#7a82a8;">Best regards,</p>
+              <p style="margin:0;font-size:13px;font-weight:700;color:#0d1124;">Son Got Samples</p>
+
+            </td>
+          </tr>
+
+          {{-- Footer --}}
+          <tr>
+            <td align="center" style="padding-top:28px;">
+              <p style="margin:0;font-size:11px;color:#9399b8;">© {{ date('Y') }} Son Got Samples. All rights reserved.</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
 </body>
 </html>

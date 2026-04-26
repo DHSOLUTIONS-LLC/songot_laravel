@@ -3,47 +3,70 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Password Reset OTP</title>
-  <style>
-    body { margin: 0; padding: 0; background: #05070f; font-family: 'Segoe UI', sans-serif; color: #e8ecff; }
-    .wrapper { max-width: 480px; margin: 0 auto; padding: 40px 20px; }
-    .card {
-      background: #0d1124;
-      border: 1px solid rgba(96,116,255,.2);
-      border-radius: 16px;
-      padding: 40px;
-      text-align: center;
-    }
-    .logo { font-size: 20px; font-weight: 300; letter-spacing: .1em; color: #6074ff; margin-bottom: 32px; }
-    h1 { font-size: 22px; font-weight: 500; margin-bottom: 8px; }
-    p { font-size: 14px; color: #8f9abf; line-height: 1.6; margin-bottom: 32px; }
-    .otp-box {
-      display: inline-block;
-      background: rgba(96,116,255,.1);
-      border: 1px solid rgba(96,116,255,.35);
-      border-radius: 12px;
-      padding: 16px 40px;
-      font-size: 36px;
-      font-weight: 700;
-      letter-spacing: .35em;
-      color: #8097ff;
-      margin-bottom: 28px;
-    }
-    .expiry { font-size: 12px; color: #5a6488; margin-bottom: 32px; }
-    .footer { font-size: 11px; color: #3a4060; margin-top: 32px; }
-  </style>
+  <title>Password Reset Code</title>
 </head>
-<body>
-  <div class="wrapper">
-    <div class="card">
-      <div class="logo">SON GOT SAMPLES</div>
-      <h1>Reset your password</h1>
-      <p>Hey {{ $name }}, use the code below to reset your password. It expires in <strong style="color:#e8ecff">10 minutes</strong>.</p>
-      <div class="otp-box">{{ $otp }}</div>
-      <p class="expiry">This code is single-use and will expire at {{ now()->addMinutes(10)->format('H:i') }} UTC.</p>
-      <p style="font-size:13px;color:#5a6488;">If you didn't request this, you can safely ignore this email.</p>
-      <div class="footer">© {{ date('Y') }} Son Got Samples. All rights reserved.</div>
-    </div>
-  </div>
+<body style="margin:0;padding:0;background:#f0f2ff;font-family:'Segoe UI',Arial,sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f0f2ff;padding:40px 16px;">
+    <tr>
+      <td align="center">
+        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:480px;">
+
+          {{-- Logo / Header --}}
+          <tr>
+            <td align="center" style="padding-bottom:24px;">
+              <span style="font-size:13px;font-weight:700;letter-spacing:.18em;color:#6074ff;text-transform:uppercase;">SON GOT SAMPLES</span>
+            </td>
+          </tr>
+
+          {{-- Card --}}
+          <tr>
+            <td style="background:#ffffff;border-radius:16px;border:1px solid #dde1ff;padding:44px 40px;text-align:center;">
+
+              {{-- Icon --}}
+              <div style="display:inline-block;background:#eef0ff;border-radius:50%;width:56px;height:56px;line-height:56px;text-align:center;margin-bottom:24px;font-size:26px;">🔐</div>
+
+              {{-- Title --}}
+              <h1 style="margin:0 0 10px;font-size:22px;font-weight:700;color:#0d1124;letter-spacing:-.01em;">Reset your password</h1>
+
+              {{-- Subtitle --}}
+              <p style="margin:0 0 28px;font-size:14px;color:#4a5072;line-height:1.65;">
+                Hey <strong style="color:#0d1124;">{{ $name }}</strong>, use the code below to reset your password.
+                It expires in <strong style="color:#0d1124;">10 minutes</strong>.
+              </p>
+
+              {{-- OTP Box --}}
+              <div style="display:inline-block;background:#f0f2ff;border:2px solid #6074ff;border-radius:12px;padding:18px 44px;margin-bottom:28px;">
+                <span style="font-size:38px;font-weight:800;letter-spacing:.32em;color:#3d52e6;font-family:'Courier New',monospace;">{{ $otp }}</span>
+              </div>
+
+              {{-- Expiry note --}}
+              <p style="margin:0 0 24px;font-size:12px;color:#7a82a8;">
+                This code is single-use and will expire at <strong>{{ now()->addMinutes(10)->format('H:i') }} UTC</strong>.
+              </p>
+
+              {{-- Divider --}}
+              <div style="height:1px;background:#eaecf8;margin:0 0 24px;"></div>
+
+              {{-- Safety note --}}
+              <p style="margin:0;font-size:12px;color:#9399b8;line-height:1.6;">
+                If you didn't request a password reset, you can safely ignore this email.<br>Your password will remain unchanged.
+              </p>
+
+            </td>
+          </tr>
+
+          {{-- Footer --}}
+          <tr>
+            <td align="center" style="padding-top:28px;">
+              <p style="margin:0;font-size:11px;color:#9399b8;">© {{ date('Y') }} Son Got Samples. All rights reserved.</p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
 </body>
 </html>
