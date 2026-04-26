@@ -90,15 +90,7 @@ class VaultController extends Controller
         $title    = trim(preg_replace('/[^a-zA-Z0-9\s\-\.]/', '', $stem->title  ?? 'Unknown'));
         $stemType = trim($stem->stem_type   ?? 'Track');
         $bpm      = $stem->bpm             ?? '0';
-        $key      = trim($stem->musical_key ?? '');
-
-        if (stripos($key, 'maj') !== false) {
-            $key = str_ireplace('maj', 'Major', $key);
-        } elseif (stripos($key, 'min') !== false) {
-            $key = str_ireplace('min', 'Minor', $key);
-        } elseif (preg_match('/^[A-G][#b]?$/', $key)) {
-            $key = $key . ' Major';
-        }
+        $key = $this->normalizeMusicalKey($stem->musical_key ?? '');
         $key = trim($key);
 
         if (empty($artist)) $artist = 'Unknown Artist';
@@ -125,6 +117,25 @@ class VaultController extends Controller
     }
 
     return response()->download($zipPath, $zipFileName)->deleteFileAfterSend(true);
+}
+
+private function normalizeMusicalKey(string $key): string
+{
+    $key = trim($key);
+
+    if (preg_match('/major/i', $key)) {
+        return preg_replace('/major/i', 'Major', $key);
+    } elseif (preg_match('/minor/i', $key)) {
+        return preg_replace('/minor/i', 'Minor', $key);
+    } elseif (preg_match('/maj/i', $key)) {
+        return preg_replace('/maj/i', 'Major', $key);
+    } elseif (preg_match('/min/i', $key)) {
+        return preg_replace('/min/i', 'Minor', $key);
+    } elseif (preg_match('/^[A-G][#b]?$/', $key)) {
+        return $key . ' Major';
+    }
+
+    return $key;
 }
 
 

@@ -88,4 +88,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Download::class);
     }
+
+    public function getAuthPassword(): string
+    {
+        return $this->password_hash ?? '';
+    }
 }

@@ -60,7 +60,7 @@ public function showRegister()
         return redirect()->route('admin.dashboard');
     }
 
-    return redirect()->intended('/')->with('success', 'Welcome back, ' . $user->name . '!');
+    return redirect('/')->with('success', 'Welcome back, ' . $user->name . '!');
 }
 
 public function logout(Request $request)
